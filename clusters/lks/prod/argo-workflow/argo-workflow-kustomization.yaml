@@ -4,6 +4,8 @@ kind: Kustomization
 metadata:
   name: argo
   namespace: flux-system
+resources:
+  - namespace.yaml
 spec:
   interval: 5m0s
   path: ./manifests/cluster-install/
