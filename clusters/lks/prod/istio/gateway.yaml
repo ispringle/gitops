@@ -11,6 +11,6 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./istio/gateway
+  path: .base/istio/gateway
   prune: true
   validation: client
