@@ -5,6 +5,8 @@ metadata:
   name: argo
   namespace: flux-system
 spec:
+  dependsOn:
+    - name: istio-system
   interval: 5m0s
   path: ./manifests/cluster-install/
   prune: true
