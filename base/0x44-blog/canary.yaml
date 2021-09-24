@@ -3,7 +3,7 @@ apiVersion: flagger.app/v1beta1
 kind: Canary
 metadata:
   name: frontend
-  namespace: prod
+  namespace: 0x44-blog
 spec:
   # deployment reference
   targetRef:

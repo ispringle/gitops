@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend
-  namespace: prod
+  namespace: 0x44-blog
   labels:
     app: frontend
 spec:
