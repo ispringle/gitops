@@ -1,0 +1,19 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: 0x44-blog
+spec:
+  hosts:
+  - "www.0x44.pw"
+  gateways:
+  - 0x44-blog-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /
+    route:
+    - destination:
+        port:
+          number: 80
+        host: frontend
