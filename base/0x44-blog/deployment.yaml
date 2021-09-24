@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: pard68/0x44-blog:latest
+        image: pard68/0x44:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 80
