@@ -5,6 +5,8 @@ metadata:
   name: monthly-challenge
   namespace: flux-system
 spec:
+  dependsOn:
+    - name: istio-system
   interval: 5m0s
   path: ./
   prune: true
