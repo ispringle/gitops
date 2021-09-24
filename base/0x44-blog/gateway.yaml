@@ -3,6 +3,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
   name: 0x44-blog-gateway
+  namespace: 0x44-blog
 spec:
   selector:
     istio: ingressgateway
