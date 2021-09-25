@@ -13,7 +13,7 @@ spec:
     name: flux-system
   validation: client
   dependsOn:
-    - cert-manager-webhook-gandi
+    - name: cert-manager-webhook-gandi
 ---
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: HelmRelease
@@ -23,7 +23,7 @@ metadata:
 spec:
   interval: 5m
   dependsOn:
-    - secrets
+    - name: secrets
   chart:
     chart: ./deploy/cert-manager-webhook-gandi
     sourceRef:
