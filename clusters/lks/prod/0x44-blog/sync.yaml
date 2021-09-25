@@ -6,7 +6,8 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: istio-system
+    - name: istio-gateway
+    - name: cert-manager
   interval: 5m
   sourceRef:
     kind: GitRepository
