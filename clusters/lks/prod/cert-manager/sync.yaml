@@ -15,6 +15,9 @@ spec:
   dependsOn:
     - name: cert-manager-webhook-gandi
 ---
+spec:
+  interval: 5m
+---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -22,15 +25,16 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
+  chart:
+    spec:
+      chart: ./deploy/cert-manager-webhook-gandi
+      sourceRef:
+        kind: GitRepository
+        name: cert-manager-webhook-gandi
+      interval: 5m
+      valuesFiles:
+        - ./deploy/cert-manager-webhook-gandi/values.yaml
   dependsOn:
     - name: secrets
-  chart:
-    chart: ./deploy/cert-manager-webhook-gandi
-    sourceRef:
-      name: cert-manager-webhook-gandi
-      kind: GitRepository
-    interval: 5m
-    valuesFiles:
-      - ./deploy/cert-manager-webhook-gandi/values.yaml
   values:
     groupName: acme.0x44.pw
