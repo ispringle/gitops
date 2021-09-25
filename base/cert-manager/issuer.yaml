@@ -1,0 +1,21 @@
+---
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-staging
+  namespace: cert-manager
+spec:
+  acme:
+    email: pard@0x44.pw
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: letsencrypt-staging
+    solvers:
+    - dns01:
+        webhook:
+          groupName: acme.0x44.pe
+          solverName: gandi
+          config:
+            apiKeySecretRef:
+              key: api-token
+              name: gandi-credentials
