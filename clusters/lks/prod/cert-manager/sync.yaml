@@ -15,7 +15,7 @@ spec:
   dependsOn:
     - name: cert-manager-webhook-gandi
 ---
-apiVersion: source.toolkit.fluxcd.io/v1beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: cert-manager-webhook-gandi
