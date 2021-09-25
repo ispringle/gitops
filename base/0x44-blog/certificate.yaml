@@ -5,6 +5,8 @@ metadata:
   name: 0x44-blog-cert
   namespace: istio-system
 spec:
+  issuerRef:
+    name: letsencrypt-staging
   secretName: 0x44-blog-cert
   commonName: 0x44.pw
   dnsNames:
