@@ -32,6 +32,6 @@ spec:
       valuesFiles:
         - ./deploy/cert-manager-webhook-gandi/values.yaml
   dependsOn:
-    - name: secrets
+    - name: sop-secrets
   values:
     groupName: acme.0x44.pw
