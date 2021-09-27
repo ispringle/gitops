@@ -15,8 +15,8 @@ spec:
     - authority:
         exact:
           0x44.pw
-        redirect:
-          authority: www.0x44.pw
+    redirect:
+      authority: www.0x44.pw
   - match:
     - uri:
         prefix: /
