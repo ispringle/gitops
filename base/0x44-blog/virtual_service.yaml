@@ -6,10 +6,17 @@ metadata:
   namespace: 0x44-blog
 spec:
   hosts:
-  - "www.0x44.pw"
+  - www.0x44.pw
+  - 0x44.pw
   gateways:
   - 0x44-blog-gateway
   http:
+  - match:
+    - authority:
+        exact:
+          0x44.pw
+        redirect:
+          authority: www.0x44.pw
   - match:
     - uri:
         prefix: /

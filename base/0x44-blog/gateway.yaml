@@ -8,13 +8,22 @@ spec:
   selector:
     istio: ingressgateway
   servers:
-  - port:
-      number: 443
-      name: https
-      protocol: HTTPS
-    tls:
-      mode: SIMPLE
-      credentialName: 0x44-blog-cert-k5n5t
-    hosts:
-    - "0x44.pw"
-    - "www.0x44.pw"
+    - port:
+        number: 80
+        name: http
+        protocol: HTTP
+      tls:
+        httpsRedirect: true
+      hosts:
+        - "0x44.pw"
+        - "www.0x44.pw"
+    - port:
+        number: 443
+        name: https
+        protocol: HTTPS
+      tls:
+        mode: SIMPLE
+        credentialName: 0x44-blog-cert
+      hosts:
+        - "0x44.pw"
+        - "www.0x44.pw"
