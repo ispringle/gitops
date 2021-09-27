@@ -14,7 +14,7 @@ spec:
       protocol: HTTPS
     tls:
       mode: SIMPLE
-      credentialName: 0x44-blog-cert
+      credentialName: 0x44-blog-cert-k5n5t
     hosts:
     - "0x44.pw"
     - "www.0x44.pw"
