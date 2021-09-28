@@ -14,3 +14,24 @@ spec:
     name: external-dns
   dependsOn:
     - name: sop-secrets
+  patchesStrategicMerge:
+  - apiVersion:
+    kind: Deployment
+    metadata:
+      name: external-dns
+      namespace: external-dns
+    spec:
+      template:
+        spec:
+          args:
+          - --source=service
+          - --source=ingress
+          - --source=gateway
+          - --provider=cloudflare
+          - --cloudflare-proxied
+          env:
+          - name: CF_API_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: cloudflare-secrets
+                key: api-token
