@@ -13,4 +13,3 @@ spec:
     name: flux-system
   dependsOn:
     - name: sop-secrets
-    - name: istio-gateway
