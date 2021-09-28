@@ -1,0 +1,15 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: botkube-clusterrolebinding
+  labels:
+    app: botkube
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: botkube-clusterrole
+subjects:
+- kind: ServiceAccount
+  name: botkube-sa
+  namespace: botkube

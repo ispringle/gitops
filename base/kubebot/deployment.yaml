@@ -1,0 +1,45 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: botkube
+  namespace: botkube
+  labels:
+    component: controller
+    app: botkube
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: controller
+      app: botkube
+  template:
+    metadata:
+      labels:
+        component: controller
+        app: botkube
+    spec:
+      serviceAccountName: botkube-sa
+      containers:
+        - name: botkube
+          image: "ghcr.io/infracloudio/botkube:v0.12.1"
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: config-volume
+              mountPath: "/config"
+          env:
+            - name: CONFIG_PATH
+              value: "/config/"
+            - name: LOG_LEVEL
+              value: "info"
+      volumes:
+        - name: config-volume
+          projected:
+            sources:
+            - configMap:
+                name: botkube-configmap
+            - secret:
+                name: botkube-communication-secret
+      securityContext:
+        runAsUser: 101
+        runAsGroup: 101
