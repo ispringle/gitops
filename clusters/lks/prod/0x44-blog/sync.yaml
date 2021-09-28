@@ -8,6 +8,7 @@ spec:
   dependsOn:
     - name: istio-gateway
     - name: cert-manager
+    - name: external-dns
   interval: 5m
   sourceRef:
     kind: GitRepository
