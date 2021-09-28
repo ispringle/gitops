@@ -7,36 +7,10 @@ metadata:
 spec:
   targetNamespace: external-dns
   interval: 5m0s
-  path: ./kustomize
+  path: ./base/external-dns
   prune: true
   sourceRef:
     kind: GitRepository
     name: external-dns
   dependsOn:
     - name: sop-secrets
-  patches:
-    - patch: |-
-        apiVersion: apps/v1
-        kind: Deployment
-        metadata:
-          name: external-dns
-          namespace: external-dns
-        spec:
-          template:
-            spec:
-              containers:
-              - name: external-dns
-                args:
-                - --source=service
-                - --source=ingress
-                - --source=gateway
-                - --provider=cloudflare
-                - --cloudflare-proxied
-                env:
-                - name: CF_API_TOKEN
-                  valueFrom:
-                    secretKeyRef:
-                      name: cloudflare-secrets
-                      key: api-token
-      target:
-        labelSelector: "app=external-dns"
