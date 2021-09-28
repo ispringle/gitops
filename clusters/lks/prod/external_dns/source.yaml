@@ -8,4 +8,4 @@ spec:
   interval: 30s
   ref:
     branch: master
-  url: https://github.com/kubernetes-sigs/external-dns
+  url: https://github.com/pard68/gitops
