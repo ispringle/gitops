@@ -12,10 +12,8 @@ spec:
       name: letsencrypt
     solvers:
     - dns01:
-        webhook:
-          groupName: acme.0x44.pw
-          solverName: gandi
-          config:
-            apiKeySecretRef:
-              key: api-token
-              name: gandi-credentials
+        cloudflare:
+          email: ian@dapringles.com
+          apiTokenSecretRef:
+            name: cloudflare-api-token
+            key: api-token
