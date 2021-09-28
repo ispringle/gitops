@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
 - components.yaml
 - sync.yaml
+- notifications.yaml
