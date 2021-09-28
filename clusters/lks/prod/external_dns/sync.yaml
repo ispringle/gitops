@@ -11,6 +11,6 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: external-dns
+    name: flux-system
   dependsOn:
     - name: sop-secrets
