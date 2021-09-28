@@ -15,26 +15,28 @@ spec:
   dependsOn:
     - name: sop-secrets
   patches:
-  - patch: |-
-      apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-        name: external-dns
-        namespace: external-dns
-      spec:
-        template:
-          spec:
-            containers:
-            - name: external-dns
-              args:
-              - --source=service
-              - --source=ingress
-              - --source=gateway
-              - --provider=cloudflare
-              - --cloudflare-proxied
-              env:
-              - name: CF_API_TOKEN
-                valueFrom:
-                  secretKeyRef:
-                    name: cloudflare-secrets
-                    key: api-token
+    - patch: |-
+        apiVersion: apps/v1
+        kind: Deployment
+        metadata:
+          name: external-dns
+          namespace: external-dns
+        spec:
+          template:
+            spec:
+              containers:
+              - name: external-dns
+                args:
+                - --source=service
+                - --source=ingress
+                - --source=gateway
+                - --provider=cloudflare
+                - --cloudflare-proxied
+                env:
+                - name: CF_API_TOKEN
+                  valueFrom:
+                    secretKeyRef:
+                      name: cloudflare-secrets
+                      key: api-token
+      target:
+        labelSelector: "app=external-dns"
