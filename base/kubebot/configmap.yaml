@@ -1,0 +1,205 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: botkube-configmap
+  namespace: botkube
+  labels:
+    app: botkube
+data:
+  resource_config.yaml: |
+    resources:
+      - name: v1/pods
+        namespaces:
+          include:
+            - all
+        events:
+          - create
+          - delete
+          - error
+      - name: v1/services
+        namespaces:
+          include:
+            - all
+          ignore:
+            -
+        events:
+          - create
+          - delete
+          - error
+      - name: apps/v1/deployments
+        namespaces:
+          include:
+            - all
+          ignore:
+            -
+        events:
+          - create
+          - update
+          - delete
+          - error
+        updateSetting:
+          includeDiff: true
+          fields:
+            - spec.template.spec.containers[*].image
+            - status.availableReplicas
+      - name: apps/v1/statefulsets
+        namespaces:
+          include:
+            - all
+          ignore:
+            -
+        events:
+          - create
+          - update
+          - delete
+          - error
+        updateSetting:
+          includeDiff: true
+          fields:
+            - spec.template.spec.containers[*].image
+            - status.readyReplicas
+      - name: networking.k8s.io/v1beta1/ingresses
+        namespaces:
+          include:
+            - all
+          ignore:
+            -
+        events:
+          - create
+          - delete
+          - error
+      - name: v1/nodes
+        namespaces:
+          include:
+            - all
+          ignore:
+            -
+        events:
+          - create
+          - delete
+          - error
+      - name: v1/namespaces
+        namespaces:
+          include:
+            - all
+          ignore:
+            -
+        events:
+          - create
+          - delete
+          - error
+      - name: v1/persistentvolumes
+        namespaces:
+          include:
+            - all
+          ignore:
+            -
+        events:
+          - create
+          - delete
+          - error
+      - name: v1/persistentvolumeclaims
+        namespaces:
+          include:
+            - all
+          ignore:
+            -
+        events:
+          - create
+          - delete
+          - error
+      - name: v1/configmaps
+        namespaces:
+          include:
+            - all
+          ignore:
+            -
+        events:
+          - create
+          - delete
+          - error
+      - name: apps/v1/daemonsets
+        namespaces:
+          include:
+            - all
+          ignore:
+            -
+        events:
+          - create
+          - update
+          - delete
+          - error
+        updateSetting:
+          includeDiff: true
+          fields:
+            - spec.template.spec.containers[*].image
+            - status.numberReady
+      - name: batch/v1/jobs
+        namespaces:
+          include:
+            - all
+          ignore:
+            -
+        events:
+          - create
+          - update
+          - delete
+          - error
+        updateSetting:
+          includeDiff: true
+          fields:
+            - spec.template.spec.containers[*].image
+            - status.conditions[*].type
+      - name: rbac.authorization.k8s.io/v1/roles
+        namespaces:
+          include:
+            - all
+          ignore:
+            -
+        events:
+          - create
+          - delete
+          - error
+      - name: rbac.authorization.k8s.io/v1/rolebindings
+        namespaces:
+          include:
+            - all
+          ignore:
+            -
+        events:
+          - create
+          - delete
+          - error
+      - name: rbac.authorization.k8s.io/v1/clusterrolebindings
+        namespaces:
+          include:
+            - all
+          ignore:
+            -
+        events:
+          - create
+          - delete
+          - error
+      - name: rbac.authorization.k8s.io/v1/clusterroles
+        namespaces:
+          include:
+            - all
+          ignore:
+            -
+        events:
+          - create
+          - delete
+          - error
+    recommendations: true
+    settings:
+      clustername: stoker
+      kubectl:
+        enabled: true
+        commands:
+          verbs: ["api-resources", "api-versions", "cluster-info", "describe", "diff", "explain", "get", "logs", "top", "auth"]
+          resources: ["deployments", "pods" , "namespaces", "daemonsets", "statefulsets", "storageclasses", "nodes"]
+        defaultNamespace: default
+        restrictAccess: true
+      configwatcher: true
+      upgradeNotifier: true
