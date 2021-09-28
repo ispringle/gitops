@@ -15,22 +15,23 @@ spec:
   dependsOn:
     - name: sop-secrets
   patchesStrategicMerge:
-    - apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-        name: external-dns
-      spec:
-        template:
-          spec:
-            args:
-            - --source=service
-            - --source=ingress
-            - --source=gateway
-            - --provider=cloudflare
-            - --cloudflare-proxied
-            env:
-            - name: CF_API_TOKEN:
-              valueFrom:
-                secretKeyRef:
-                  name: cloudflare-secrets
-                  key: api-token
+  patchesStrategicMerge:
+  - apiVersion:
+    kind: Deployment
+    metadata:
+      name: external-dns
+    spec:
+      template:
+        spec:
+          args:
+          - --source=service
+          - --source=ingress
+          - --source=gateway
+          - --provider=cloudflare
+          - --cloudflare-proxied
+          env:
+          - name: CF_API_TOKEN:
+            valueFrom:
+              secretKeyRef:
+                name: cloudflare-secrets
+                key: api-token
