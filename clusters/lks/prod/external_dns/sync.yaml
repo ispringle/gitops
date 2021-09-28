@@ -30,7 +30,7 @@ spec:
           - --provider=cloudflare
           - --cloudflare-proxied
           env:
-          - name: CF_API_TOKEN:
+          - name: CF_API_TOKEN
             valueFrom:
               secretKeyRef:
                 name: cloudflare-secrets
