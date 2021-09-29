@@ -2,13 +2,13 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: ianpring-org-cert
+  name: ianpringle-org-cert
   namespace: istio-system
 spec:
   issuerRef:
     name: letsencrypt
     kind: ClusterIssuer
-  secretName: ianpring-org-cert
+  secretName: ianpringle-org-cert
   commonName: ianpringle.org
   dnsNames:
   - ianpringle.org
