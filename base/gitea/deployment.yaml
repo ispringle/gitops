@@ -29,18 +29,30 @@ spec:
         image: gitea/gitea:1.15.0
         imagePullPolicy: Always
         env:
-          - APP_NAME=Gitea
-          - USER_UID=1000
-          - USER_GID=1000
-          - ROOT_URL=https://git.0x44.pw
-          - SSH_DOMAIN=git.0x44.pw
-          - SSH_PORT=2222
-          - HTTP_PORT=80
-          - DB_TYPE=postgres
-          - DB_HOST=gitea-db:5432
-          - DB_NAME=gitea
-          - DB_USER=postgres
-          - DB_PASSWD=postgres
+        - name: APP_NAME
+          value: Gitea
+        - name: USER_UID
+          value: 1000
+        - name: USER_GID
+          value: 1000
+        - name: ROOT_URL
+          value: https://git.0x44.pw
+        - name: SSH_DOMAIN
+          value: git.0x44.pw
+        - name: SSH_PORT
+          value: 2222
+        - name: HTTP_PORT
+          value: 80
+        - name: DB_TYPE
+          value: postgres
+        - name: DB_HOST
+          value: gitea- name:db:5432
+        - name: DB_NAME
+          value: gitea
+        - name: DB_USER
+          value: postgres
+        - name: DB_PASSWD
+          value: postgres
         ports:
         - containerPort: 5432
         livenessProbe:
@@ -53,9 +65,12 @@ spec:
         image: postgres:alpine
         imagePullPolicy: Always
         env:
-          - POSTGRES_USER=postgres
-          - POSTGRES_PASSWORD=postgres
-          - POSTGRES_DB=gitea
+        - name: POSTGRES_USER
+          value: postgres
+        - name: POSTGRES_PASSWORD
+          value: postgres
+        - name: POSTGRES_DB
+          value: gitea
         ports:
         - containerPort: 80
           name: http
