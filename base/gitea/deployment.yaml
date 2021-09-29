@@ -113,3 +113,4 @@ spec:
         - name: postgresdb
           persistentVolumeClaim:
             claimName: gitea-database-pvc
+            readOnly: false
