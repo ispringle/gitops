@@ -24,6 +24,17 @@ spec:
       labels:
         app: frontend
     spec:
+      initContainers:
+      - name: chowner
+        image: alpine
+        command:
+        - chown
+        - -R
+        - git:git
+        - /data
+        volumeMounts:
+          - mountPath: /data
+            name: data
       containers:
       - name: frontend
         image: gitea/gitea:1.15.0
@@ -63,6 +74,9 @@ spec:
             port: 80
           initialDelaySeconds: 5
           timeoutSeconds: 5
+        volumeMounts:
+          - mountPath: /data
+            name: data
       volumes:
         - name: data
           persistentVolumeClaim:
@@ -93,6 +107,17 @@ spec:
       labels:
         app: database
     spec:
+      initContainers:
+      - name: chowner
+        image: alpine
+        command:
+        - chown
+        - -R
+        - git:git
+        - /var/lib/postgresql/data
+        volumeMounts:
+        - mountPath: /var/lib/postgresql/data
+          name: postgresdb
       containers:
       - name: database
         image: postgres:alpine
@@ -113,4 +138,3 @@ spec:
         - name: postgresdb
           persistentVolumeClaim:
             claimName: gitea-database-pvc
-            readOnly: false
