@@ -46,7 +46,7 @@ spec:
         - name: DB_TYPE
           value: "postgres"
         - name: DB_HOST
-          value: "gitea- name:db:5432"
+          value: "database:5432"
         - name: DB_NAME
           value: "gitea"
         - name: DB_USER
@@ -54,13 +54,46 @@ spec:
         - name: DB_PASSWD
           value: "postgres"
         ports:
-        - containerPort: 5432
+        - containerPort: 80
+          name: http
+          protocol: TCP
         livenessProbe:
           httpGet:
             path: /
             port: 80
           initialDelaySeconds: 5
           timeoutSeconds: 5
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: gitea-pvc
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: database
+  namespace: gitea
+  labels:
+    app: database
+spec:
+  minReadySeconds: 5
+  revisionHistoryLimit: 5
+  progressDeadlineSeconds: 60
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 0
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: database
+  template:
+    metadata:
+      annotations:
+        prometheus.io/scrape: "false"
+      labels:
+        app: database
+    spec:
+      containers:
       - name: database
         image: postgres:alpine
         imagePullPolicy: Always
@@ -72,9 +105,7 @@ spec:
         - name: POSTGRES_DB
           value: "gitea"
         ports:
-        - containerPort: 80
-          name: http
-          protocol: TCP
+        - containerPort: 5432
         volumeMounts:
           - mountPath: /var/lib/postgresql/data
             name: postgresdb
@@ -82,6 +113,3 @@ spec:
         - name: postgresdb
           persistentVolumeClaim:
             claimName: gitea-database-pvc
-        - name: data
-          persistentVolumeClaim:
-            claimName: gitea-pvc
