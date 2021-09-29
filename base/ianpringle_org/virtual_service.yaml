@@ -1,0 +1,27 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: ianpringle-org
+  namespace: ianpringle-org
+spec:
+  hosts:
+  - www.ianpringle.org
+  - ianpringle.org
+  gateways:
+  - ianpringle-org-gateway
+  http:
+  - match:
+    - authority:
+        exact:
+          ianpringle.org
+    redirect:
+      authority: www.ianpringle.org
+  - match:
+    - uri:
+        prefix: /
+    route:
+    - destination:
+        port:
+          number: 80
+        host: frontend
