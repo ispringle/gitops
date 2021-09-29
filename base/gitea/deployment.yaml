@@ -78,10 +78,10 @@ spec:
         volumeMounts:
           - mountPath: /var/lib/postgresql/data
             name: postgresdb
-    volumes:
-      - name: postgresdb
-        persistentVolumeClaim:
-          claimName: gitea-database-pvc
-      - name: data
-        persistentVolumeClaim:
-          claimName: gitea-pvc
+      volumes:
+        - name: postgresdb
+          persistentVolumeClaim:
+            claimName: gitea-database-pvc
+        - name: data
+          persistentVolumeClaim:
+            claimName: gitea-pvc
