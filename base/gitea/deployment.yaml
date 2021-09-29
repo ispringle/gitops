@@ -30,29 +30,29 @@ spec:
         imagePullPolicy: Always
         env:
         - name: APP_NAME
-          value: Gitea
+          value: "Gitea"
         - name: USER_UID
-          value: 1000
+          value: "1000"
         - name: USER_GID
-          value: 1000
+          value: "1000"
         - name: ROOT_URL
-          value: https://git.0x44.pw
+          value: "https://git.0x44.pw"
         - name: SSH_DOMAIN
-          value: git.0x44.pw
+          value: "git.0x44.pw"
         - name: SSH_PORT
-          value: 2222
+          value: "2222"
         - name: HTTP_PORT
-          value: 80
+          value: "80"
         - name: DB_TYPE
-          value: postgres
+          value: "postgres"
         - name: DB_HOST
-          value: gitea- name:db:5432
+          value: "gitea- name:db:5432"
         - name: DB_NAME
-          value: gitea
+          value: "gitea"
         - name: DB_USER
-          value: postgres
+          value: "postgres"
         - name: DB_PASSWD
-          value: postgres
+          value: "postgres"
         ports:
         - containerPort: 5432
         livenessProbe:
@@ -66,11 +66,11 @@ spec:
         imagePullPolicy: Always
         env:
         - name: POSTGRES_USER
-          value: postgres
+          value: "postgres"
         - name: POSTGRES_PASSWORD
-          value: postgres
+          value: "postgres"
         - name: POSTGRES_DB
-          value: gitea
+          value: "gitea"
         ports:
         - containerPort: 80
           name: http
