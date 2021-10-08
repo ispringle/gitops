@@ -25,7 +25,7 @@ spec:
     - apiVersion: networking.istio.io/v1alpha3
       kind: Gateway
       metadata:
-        name: gateway
+        name: frontend
       spec:
         servers:
           - port:
@@ -36,20 +36,10 @@ spec:
               credentialName: test-proxy-auth-cert
             hosts:
               - "test-proxy-auth.x44.pw"
-    - apiVersion: cert-manager.io/v1
-      kind: Certificate
-      metadata:
-        name: test-proxy-auth-cert
-        namespace: istio-system
-      spec:
-        secretName: test-proxy-auth-cert
-        commonName: test-proxy-auth.0x44.pw
-        dnsNames:
-        - test-proxy-auth.0x44.pw
     - apiVersion: networking.istio.io/v1alpha3
       kind: VirtualService
       metadata:
-        name: virtual-service
+        name: frontend
       spec:
         hosts:
         - test-proxy-auth.0x44.pw

@@ -8,6 +8,7 @@ spec:
   issuerRef:
     name: letsencrypt
     kind: ClusterIssuer
-  secretName: ""
-  commonName: ""
-  dnsNames: []
+  secretName: test-proxy-auth-cert
+  commonName: test-proxy-auth.0x44.pw
+  dnsNames:
+    - test-proxy-auth.0x44.pw
