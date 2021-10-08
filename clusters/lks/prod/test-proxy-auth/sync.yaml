@@ -40,7 +40,9 @@ spec:
       kind: Certificate
       metadata:
         name: test-proxy-auth-cert
+        namespace: istio-system
       spec:
+        secretName: test-proxy-auth-cert
         commonName: test-proxy-auth.0x44.pw
         dnsNames:
         - test-proxy-auth.0x44.pw
