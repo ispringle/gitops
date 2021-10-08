@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - deployment.yaml
-  - certificate.yaml
   - gateway.yaml
   - virtual_service.yaml
   - canary.yaml
