@@ -13,6 +13,15 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./base/0x44-blog
+  path: ./base/generic-site-www
   prune: true
   validation: client
+  images:
+    - name: placeholder/image
+      newName: pard68/0x44
+      newTag: latest
+  postBuild:
+    substitute:
+      namespace_name: "0x44-blog"
+      cert_name: "0x44-blog-cert"
+      host_name: "0x44.pw"
