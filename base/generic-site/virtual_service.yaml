@@ -4,7 +4,7 @@ kind: VirtualService
 metadata:
   name: frontend
 spec:
-  hosts: ${host-names-list:=[]}
+  hosts: ${host_names_list:=[]}
   gateways:
   - frontend
   http: []

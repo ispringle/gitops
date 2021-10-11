@@ -4,4 +4,4 @@ kind: Namespace
 metadata:
   labels:
     istio-injection: enabled
-  name: ${ namespace-name:="generic-site" }
+  name: ${ namespace_name:="generic-site" }
