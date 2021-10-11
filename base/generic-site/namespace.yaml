@@ -4,4 +4,4 @@ kind: Namespace
 metadata:
   labels:
     istio-injection: enabled
-  name: ${namespace_name}
+  name: ${namespace-name}

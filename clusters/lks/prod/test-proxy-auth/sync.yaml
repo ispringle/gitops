@@ -23,28 +23,10 @@ spec:
       newTag: latest
   patchesStrategicMerge:
     - apiVersion: networking.istio.io/v1alpha3
-      kind: Gateway
-      metadata:
-        name: frontend
-      spec:
-        servers:
-          - port:
-            hosts:
-              - "test-proxy-auth.0x44.pw"
-          - port:
-            tls:
-              credentialName: test-proxy-auth-cert
-            hosts:
-              - "test-proxy-auth.x44.pw"
-    - apiVersion: networking.istio.io/v1alpha3
       kind: VirtualService
       metadata:
         name: frontend
       spec:
-        hosts:
-        - test-proxy-auth.0x44.pw
-        gateways:
-        - gateway
         http:
         - match:
           - uri:
@@ -56,4 +38,6 @@ spec:
               host: frontend
   postBuild:
     substitute:
-      namespace_name: "test-auth-proxy"
+      namespace-name: "test-auth-proxy"
+      cert-name: "test-auth-proxy"
+      host-names-list: ["test-proxy-auth.0x44.pw"]
