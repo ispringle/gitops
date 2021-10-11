@@ -7,4 +7,12 @@ spec:
   hosts: ${host_names_list:=[]}
   gateways:
   - frontend
-  http: []
+  http:
+  - match:
+    - uri:
+        prefix: /
+    route:
+    - destination:
+        port:
+          number: 80
+        host: frontend
