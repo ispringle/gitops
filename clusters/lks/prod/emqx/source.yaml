@@ -2,8 +2,9 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: HelmRepository
 metadata:
-  name: emqx
+  name: emqx-charts
   namespace: flux-system
 spec:
-  interval: 5m0s
+  interval: 10m
   url: https://repos.emqx.io/charts
+  timeout: 3m
