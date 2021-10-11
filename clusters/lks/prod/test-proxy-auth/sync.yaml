@@ -40,4 +40,4 @@ spec:
     substitute:
       namespace-name: "test-auth-proxy"
       cert-name: "test-auth-proxy"
-      host-names-list: ["test-proxy-auth.0x44.pw"]
+      host-names-list: "[test-proxy-auth.0x44.pw]"
