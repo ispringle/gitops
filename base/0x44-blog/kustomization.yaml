@@ -4,6 +4,8 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - deployment.yaml
+  - hpa.yaml
   - certificate.yaml
+  - service.yaml
   - gateway.yaml
   - virtual_service.yaml
