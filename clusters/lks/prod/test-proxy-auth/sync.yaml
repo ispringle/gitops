@@ -38,6 +38,6 @@ spec:
               host: frontend
   postBuild:
     substitute:
-      namespace-name: "test_auth_proxy"
-      cert-name: "test_auth_proxy"
-      host-names-list: "[test-proxy-auth.0x44.pw]"
+      namespace_name: "test-auth-proxy"
+      cert_name: "test-auth-proxy"
+      host_names_list: "[test-proxy-auth.0x44.pw]"
