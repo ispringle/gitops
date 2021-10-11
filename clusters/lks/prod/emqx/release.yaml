@@ -1,0 +1,14 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: emqx
+  namespace: emqx
+spec:
+  chart:
+    spec:
+      chart: emqx
+      sourceRef:
+        kind: HelmRepository
+        name: emqx
+  interval: 5m0s
