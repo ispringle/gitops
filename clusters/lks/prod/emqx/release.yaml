@@ -22,6 +22,17 @@ spec:
     service:
       type: LoadBalancer
       loadBalancerIP: 10.1.0.1
+    ingress:
+      dashboard:
+        enabled: true
+        ingressClassName: istio
+        hosts:
+          - dashboard.emqx.0x44.pw
+      mgmt:
+        enabled: true
+        ingressClassName: istio
+        hosts:
+          - api.emqx.0x44.pw
     emqxConfig:
       EMQX_ALLOW_ANONYMOUS: "false"
     emqxAclConfig: >
