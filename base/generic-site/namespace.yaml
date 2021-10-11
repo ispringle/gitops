@@ -4,4 +4,4 @@ kind: Namespace
 metadata:
   labels:
     istio-injection: enabled
-  name: test-proxy-auth
+  name: ${namespace_name}
