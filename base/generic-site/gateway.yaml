@@ -13,11 +13,12 @@ spec:
         protocol: HTTP
       tls:
         httpsRedirect: true
-      hosts: []
+      hosts: ${host-names-list:=[]}
     - port:
         number: 443
         name: https
         protocol: HTTPS
       tls:
         mode: SIMPLE
-      hosts: []
+        credentialName: ${cert-name}
+      hosts: ${host-names-list:=[]}
