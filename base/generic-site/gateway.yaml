@@ -13,8 +13,7 @@ spec:
         protocol: HTTP
       tls:
         httpsRedirect: true
-      hosts:
-        - "test-proxy-auth.0x44.pw"
+      hosts: ${host_names_list}
     - port:
         number: 443
         name: https
@@ -22,5 +21,4 @@ spec:
       tls:
         mode: SIMPLE
         credentialName: test-proxy-auth-cert
-      hosts:
-        - "test-proxy-auth.0x44.pw"
+      hosts: ${host_names_list}

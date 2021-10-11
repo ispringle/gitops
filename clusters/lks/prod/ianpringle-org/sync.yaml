@@ -5,6 +5,7 @@ metadata:
   name: ianpringle-org
   namespace: flux-system
 spec:
+  targetNamespace: ianpringle-org
   dependsOn:
     - name: istio-gateway
     - name: cert-manager
@@ -13,6 +14,15 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./base/ianpringle_org
+  path: ./base/generic-site
   prune: true
   validation: client
+  images:
+    - name: placeholder/image
+      newName: pard68/ianpringle.org
+      newTag: latest
+  postBuild:
+    substitute:
+      namespace_name: "ianpringle-org"
+      cert_name: "ianpringle-org-cert"
+      host_names_list: "[www.ianpringle.org, ianpringle.org]"
