@@ -28,16 +28,16 @@ spec:
         metadata:
           name: frontend
         spec:
-            - port:
-                name: http
-              hosts:
-                - www.ianpringle.org
-                - ianpringle.org
-            - port:
-                name: https
-              hosts:
-                - www.ianpringle.org
-                - ianpringle.org
+          - port:
+              name: http
+            hosts:
+              - www.ianpringle.org
+              - ianpringle.org
+          - port:
+              name: https
+            hosts:
+              - www.ianpringle.org
+              - ianpringle.org
     - patch: |-
         apiVersion: networking.istio.io/v1alpha3
         kind: VirtualService
