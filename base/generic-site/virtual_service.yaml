@@ -5,7 +5,7 @@ metadata:
   name: frontend
 spec:
   hosts:
-  - test-proxy-auth.0x44.pw
+  - ${host_names_list}
   gateways:
   - frontend
   http:
