@@ -1,5 +1,5 @@
 ---
-apiVersion: networking.istio.io/v1beta1
+apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
   name: frontend
@@ -13,12 +13,14 @@ spec:
         protocol: HTTP
       tls:
         httpsRedirect: true
-      hosts: ${host_names_list:=[]}
+      hosts:
+        - "test-proxy-auth.0x44.pw"
     - port:
         number: 443
         name: https
         protocol: HTTPS
       tls:
         mode: SIMPLE
-        credentialName: ${cert_name}
-      hosts: ${host_names_list:=[]}
+        credentialName: test-proxy-auth-cert
+      hosts:
+        - "test-proxy-auth.0x44.pw"
