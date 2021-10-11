@@ -18,7 +18,7 @@ spec:
   prune: true
   validation: client
   images:
-    - name: frontend
+    - name: placeholder/image
       newName: pard68/0x44
       newTag: latest
   patchesStrategicMerge:
