@@ -21,48 +21,8 @@ spec:
     - name: placeholder/image
       newName: pard68/ianpringle.org
       newTag: latest
-  patches:
-    - patch: |-
-        apiVersion: networking.istio.io/v1alpha3
-        kind: Gateway
-        metadata:
-          name: frontend
-        spec:
-          - port:
-              name: http
-            hosts:
-              - www.ianpringle.org
-              - ianpringle.org
-          - port:
-              name: https
-            hosts:
-              - www.ianpringle.org
-              - ianpringle.org
-    - patch: |-
-        apiVersion: networking.istio.io/v1alpha3
-        kind: VirtualService
-        metadata:
-          name: frontend
-        spec:
-          hosts:
-          - www.ianpringle.org
-          - ianpringle.org
-          http:
-          - match:
-            - authority:
-                exact:
-                  ianpringle.org
-            redirect:
-              authority: www.ianpringle.org
-          - match:
-            - uri:
-                prefix: /
-            route:
-            - destination:
-                port:
-                  number: 80
-                host: frontend
   postBuild:
     substitute:
       namespace_name: "ianpringle-org"
       cert_name: "ianpringle-org-cert"
+      host_names_list: "[ianpringle.org]"
