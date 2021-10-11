@@ -4,4 +4,4 @@ kind: Namespace
 metadata:
   labels:
     istio-injection: enabled
-  name: ${ namespace_name:="generic-site" }
+  name: test-proxy-auth
