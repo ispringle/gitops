@@ -6,9 +6,16 @@ metadata:
 spec:
   hosts:
     - ${host_name}
+    - www.${host_name}
   gateways:
   - frontend
   http:
+  - match:
+    - authority:
+        exact:
+          ${host_name}
+    redirect:
+      authority: www.${host_name}
   - match:
     - uri:
         prefix: /
