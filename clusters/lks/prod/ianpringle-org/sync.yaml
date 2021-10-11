@@ -14,7 +14,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./base/generic-site
+  path: ./base/generic-site-www
   prune: true
   validation: client
   images:
@@ -25,4 +25,4 @@ spec:
     substitute:
       namespace_name: "ianpringle-org"
       cert_name: "ianpringle-org-cert"
-      host_names_list: "[ianpringle.org]"
+      host_name: "ianpringle.org"
