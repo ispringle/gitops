@@ -17,7 +17,7 @@
         "registryUrl=(?<registryUrl>.*?)\n *chart: (?<depName>.*?)\n *version: (?<currentValue>.*)\n"
       ],
       "datasourceTemplate": "helm"
-    },
+    }
   ],
   "packageRules": [
     {
