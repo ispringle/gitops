@@ -24,17 +24,17 @@ spec:
       loadBalancerIP: 10.1.0.1
     ingress:
       dashboard:
-        enabled: true
+        enabled: false
         ingressClassName: istio
         hosts:
           - dashboard.emqx.0x44.pw
       mgmt:
-        enabled: true
+        enabled: false
         ingressClassName: istio
         hosts:
           - api.emqx.0x44.pw
     emqxConfig:
-      EMQX_ALLOW_ANONYMOUS: "false"
+      EMQX_ALLOW_ANONYMOUS: "true"
     emqxAclConfig: >
       {allow, {user, "dashboard"}, subscribe, ["$SYS/#"]}.
       {allow, all, subscribe, ["$SYS/#", {eq, "#"}]}.
