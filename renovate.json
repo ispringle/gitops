@@ -9,26 +9,22 @@
       "\\.yaml$"
     ],
   "regexManagers": [
-    // regexManager to read and process HelmRelease files
     {
       "fileMatch": [
         "\\.yaml$"
       ],
       "matchStrings": [
-        // helm releases
         "registryUrl=(?<registryUrl>.*?)\n *chart: (?<depName>.*?)\n *version: (?<currentValue>.*)\n"
       ],
       "datasourceTemplate": "helm"
     },
   ],
   "packageRules": [
-    // setup datasources
     {
       "matchDatasources": ["helm"],
       "separateMinorPatch": true,
       "ignoreDeprecated": true
     },
-    // global docker datasource settings
     {
       "matchDatasources": ["docker"],
       "enabled": true,
@@ -36,7 +32,6 @@
       "commitMessageExtra": "to {{#if isSingleVersion}}v{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}",
       "matchUpdateTypes": ["major", "minor", "patch"],
     },
-    // add labels according to package and update types
     {
       "matchDatasources": ["docker"],
       "matchUpdateTypes": ["major"],
