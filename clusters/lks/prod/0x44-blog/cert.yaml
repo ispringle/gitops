@@ -1,0 +1,15 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: 0x44-blog-cert
+  namespace: istio-system
+spec:
+  issuerRef:
+    name: letsencrypt
+    kind: ClusterIssuer
+  secretName: 0x44-blog-cert
+  commonName: 0x44.pw
+  dnsNames:
+  - 0x44.pw
+  - www.0x44.pw

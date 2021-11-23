@@ -1,0 +1,14 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: www-bitranchlabs-cert
+  namespace: istio-system
+spec:
+  issuerRef:
+    name: letsencrypt
+    kind: ClusterIssuer
+  secretName: www-bitranchlabs-cert
+  dnsNames:
+  - bitranchlabs.com
+  - www.bitranchlabs.com

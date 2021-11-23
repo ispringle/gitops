@@ -1,0 +1,11 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: GitRepository
+metadata:
+  name: monthly-challenge
+  namespace: flux-system
+spec:
+  interval: 30s
+  ref:
+    branch: "202109"
+  url: https://github.com/ReformedDevs/monthly-challenge
