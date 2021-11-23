@@ -1,0 +1,140 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: gitea
+  labels:
+    app: frontend
+spec:
+  minReadySeconds: 5
+  revisionHistoryLimit: 5
+  progressDeadlineSeconds: 60
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 0
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      annotations:
+        prometheus.io/scrape: "false"
+      labels:
+        app: frontend
+    spec:
+      initContainers:
+      - name: chowner
+        image: alpine
+        command:
+        - chown
+        - -R
+        - git:git
+        - /data
+        volumeMounts:
+          - mountPath: /data
+            name: data
+      containers:
+      - name: frontend
+        image: gitea/gitea:1.15.4
+        imagePullPolicy: Always
+        env:
+        - name: APP_NAME
+          value: "Gitea"
+        - name: USER_UID
+          value: "1000"
+        - name: USER_GID
+          value: "1000"
+        - name: ROOT_URL
+          value: "https://git.0x44.pw"
+        - name: SSH_DOMAIN
+          value: "git.0x44.pw"
+        - name: SSH_PORT
+          value: "2222"
+        - name: HTTP_PORT
+          value: "80"
+        - name: DB_TYPE
+          value: "postgres"
+        - name: DB_HOST
+          value: "database:5432"
+        - name: DB_NAME
+          value: "gitea"
+        - name: DB_USER
+          value: "postgres"
+        - name: DB_PASSWD
+          value: "postgres"
+        ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          timeoutSeconds: 5
+        volumeMounts:
+          - mountPath: /data
+            name: data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: gitea-pvc
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: database
+  namespace: gitea
+  labels:
+    app: database
+spec:
+  minReadySeconds: 5
+  revisionHistoryLimit: 5
+  progressDeadlineSeconds: 60
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 0
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: database
+  template:
+    metadata:
+      annotations:
+        prometheus.io/scrape: "false"
+      labels:
+        app: database
+    spec:
+      initContainers:
+      - name: chowner
+        image: alpine
+        command:
+        - chown
+        - -R
+        - git:git
+        - /var/lib/postgresql/data
+        volumeMounts:
+        - mountPath: /var/lib/postgresql/data
+          name: postgresdb
+      containers:
+      - name: database
+        image: postgres:alpine
+        imagePullPolicy: Always
+        env:
+        - name: POSTGRES_USER
+          value: "postgres"
+        - name: POSTGRES_PASSWORD
+          value: "postgres"
+        - name: POSTGRES_DB
+          value: "gitea"
+        ports:
+        - containerPort: 5432
+        volumeMounts:
+          - mountPath: /var/lib/postgresql/data
+            name: postgresdb
+      volumes:
+        - name: postgresdb
+          persistentVolumeClaim:
+            claimName: gitea-database-pvc

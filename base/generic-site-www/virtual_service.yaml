@@ -1,0 +1,26 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: frontend
+spec:
+  hosts:
+    - ${host_name}
+    - www.${host_name}
+  gateways:
+  - frontend
+  http:
+  - match:
+    - authority:
+        exact:
+          ${host_name}
+    redirect:
+      authority: www.${host_name}
+  - match:
+    - uri:
+        prefix: /
+    route:
+    - destination:
+        port:
+          number: 80
+        host: frontend

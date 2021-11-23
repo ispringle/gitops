@@ -1,0 +1,28 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: ianpringle-org
+  namespace: flux-system
+spec:
+  targetNamespace: ianpringle-org
+  dependsOn:
+    - name: istio-gateway
+    - name: cert-manager
+    - name: external-dns
+  interval: 5m
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./base/generic-site-www
+  prune: true
+  validation: client
+  images:
+    - name: placeholder/image
+      newName: pard68/ianpringle.org
+      newTag: latest
+  postBuild:
+    substitute:
+      namespace_name: "ianpringle-org"
+      cert_name: "ianpringle-org-cert"
+      host_name: "ianpringle.org"
