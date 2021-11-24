@@ -16,7 +16,7 @@ components:
 
 patchesStrategicMerge:
 - ./overlays/argo-cd-cm.yaml
-- ./overlays/argo-cd-repo-server-ksops-patch.yaml
+# - ./overlays/argo-cd-repo-server-ksops-patch.yaml
 # - overlays/argocd-server-service.yaml
 
 patchesJson6902:
