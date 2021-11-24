@@ -33,6 +33,7 @@ spec:
   source:
     chart: istiod
     repoURL: https://istio-release.storage.googleapis.com/charts
+    targetRevision: 1.12.0
   syncPolicy:
     automated:
       prune: true
@@ -49,8 +50,9 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    chart: istio-gateway
+    chart: gateway
     repoURL: https://istio-release.storage.googleapis.com/charts
+    targetRevision: 1.12.0
   syncPolicy:
     automated:
       prune: true
