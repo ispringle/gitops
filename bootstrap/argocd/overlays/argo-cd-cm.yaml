@@ -6,6 +6,7 @@ data:
   url: https://cd.bitranchlabs.com
   passwordPattern: "^.{8,32}$"
   timeout.reconciliation: 180s
+  kustomize.buildOptions: "--enable-alpha-plugins"
   dex.config: |
     connectors:
     - type: github

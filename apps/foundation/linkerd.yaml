@@ -5,7 +5,7 @@ metadata:
   name: linkerd
   namespace: argocd
 spec:
-  project: demo
+  project: default
   source:
     chart: linkerd2
     repoURL: https://helm.linkerd.io/stable
