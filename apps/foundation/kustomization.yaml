@@ -5,6 +5,7 @@ namespace: argocd
 resources:
   - ./sealed-secrets.yaml
   - ./cert-manager
-  - ./ambassador-edge-stack/
+  - ./ambassador-edge-stack
+  - ./argocd-ingress
   # - ./linkerd
   # - istio.yaml
