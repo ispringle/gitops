@@ -1,0 +1,25 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ambassador
+  namespace: argocd
+spec:
+  destination:
+    namespace: ambassador
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    chart: edge-stack
+    repoURL: https://app.getambassador.io
+    targetRevision: v2.0.5
+    helm:
+      parameters:
+      - name: installCRDs
+        value: "true"
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
