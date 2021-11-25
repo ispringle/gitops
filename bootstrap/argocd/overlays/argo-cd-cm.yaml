@@ -14,7 +14,7 @@ data:
       name: GitHub
       config:
         clientID: 92fd9e526bcb8d40f211
-        clientSecret: $dex.github.clientSecret
+        clientSecret: $gh-secret:key
         orgs:
         - name: biranchlabs
           teams:

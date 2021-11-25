@@ -3,13 +3,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: argocd
 resources:
-- ./namespace.yaml
+- .resources/namespace.yaml
 # - base/argo-cd-issuer.yaml
 # - base/argo-cd-certificate.yaml
 # - base/argo-cd-ui-ingress.yaml
 # - base/jenkins-ingress.yaml
 # - base/rollouts-extension.yaml
 - https://raw.githubusercontent.com/argoproj/argo-cd/master/manifests/install.yaml
+- .resources/gh-secret.yaml
 
 components:
 - https://github.com/argoproj-labs/argocd-extensions/manifests
