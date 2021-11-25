@@ -4,4 +4,4 @@ kind: Kustomization
 namespace: argocd
 resources:
   - ./base/ambassador.yaml
-  - ./base/argo-ingress.yaml
+  # - ./base/argo-ingress.yaml
