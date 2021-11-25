@@ -1,0 +1,20 @@
+---
+apiVersion: getambassador.io/v2
+kind: Mapping
+metadata:
+  name: argocd-server-ui
+  namespace: argocd
+spec:
+  host: cd.bitranchlabs.com
+  prefix: /
+  service: argocd-server:443
+---
+apiVersion: getambassador.io/v2
+kind: Mapping
+metadata:
+  name: argocd-server-cli
+  namespace: argocd
+spec:
+  host: cd.bitranchlabs.com:443
+  prefix: /
+  service: argocd-server:443
