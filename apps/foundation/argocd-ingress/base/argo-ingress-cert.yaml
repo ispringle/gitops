@@ -7,7 +7,7 @@ metadata:
 spec:
   secretName: ambassador-certs
   issuerRef:
-    name: letsencrypt-prod
+    name: letsencrypt
     kind: ClusterIssuer
   commonName: cd.bitranchlabs.com
   dnsNames:
