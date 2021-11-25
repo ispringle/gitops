@@ -13,3 +13,9 @@ spec:
     repoURL: https://github.com/pard68/gitops
     targetRevision: argo
     path: apps/foundation/external-dns/base
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
