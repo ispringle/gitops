@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - ./sealed-secrets.yaml
   - ./cert-manager
+  - ./external-dns
   - ./ambassador-edge-stack
   - ./argocd-ingress
   # - ./linkerd
