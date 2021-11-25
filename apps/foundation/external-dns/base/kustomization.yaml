@@ -5,6 +5,7 @@ images:
   - name: k8s.gcr.io/external-dns/external-dns
     newTag: v0.10.1
 resources:
+  - ./namespace.yaml
   - ./cloudflare-api-token.yaml
   - ./deployment.yaml
   - ./serviceaccount.yaml
